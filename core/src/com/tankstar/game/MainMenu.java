@@ -77,8 +77,9 @@ public class MainMenu implements Screen {
 
         }
         if(isButtonPressed(px,py)){
-            this.dispose();
+
             game.setScreen(new TankScreen(game));
+            this.dispose();
 
         }
         if(isButtonPressed(lx,ly)){
@@ -87,7 +88,7 @@ public class MainMenu implements Screen {
 
         }
         game.getBatch().end();
-        System.out.println("mainmenu");
+       // System.out.println("mainmenu");
     }
 
     public boolean isButtonHovered(float x,float y){

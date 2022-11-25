@@ -10,7 +10,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 public class GameScreen implements Screen {
     private TankStarGame game;
     private ShapeRenderer shape;
-    private ButtonBackground health1,health2,power;
+    private GraphicDesign health1,health2,power;
     private Texture pauseInactive,pauseActive,sky,ground,tank1,tank2,health;
     private BitmapFont black;
     private float groundX,groundY,groundWidth,groundHeight,skyX,skyY,tankWidth,tankHeight,
@@ -26,9 +26,9 @@ public class GameScreen implements Screen {
         pauseHeight=pauseWidth=75;
         tankWidth=150;
         tankHeight=75;
-        health1=new ButtonBackground(5,0,300,20);
-        health2=new ButtonBackground(1030,0,980,20);
-        power=new ButtonBackground(Gdx.graphics.getWidth()-105,Gdx.graphics.getHeight()/3-100,80,20);
+        health1=new GraphicDesign(5,0,300,20);
+        health2=new GraphicDesign(1030,0,980,20);
+        power=new GraphicDesign(Gdx.graphics.getWidth()-105,Gdx.graphics.getHeight()/3-100,80,20);
 
     }
 

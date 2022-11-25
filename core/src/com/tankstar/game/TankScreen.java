@@ -11,7 +11,7 @@ public class TankScreen implements Screen {
 
     private TankStarGame game;
     private ShapeRenderer shape;
-    private ButtonBackground health1,health2;
+
     private Texture resume,save,restart,exit,sky,ground,tank1,tank2,tank3,health;
     private BitmapFont white;
 
@@ -54,7 +54,7 @@ public class TankScreen implements Screen {
         }
 
         game.getBatch().end();
-        System.out.println("tankscreen");
+       // System.out.println("tankscreen");
 
 
     }

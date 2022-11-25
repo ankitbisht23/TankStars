@@ -15,7 +15,7 @@ public class TankStarGame extends Game {
 	public void create () {
 		batch = new SpriteBatch();
 	//	img = new Texture("badlogic.jpg");
-		this.setScreen(new PauseScreen(this));
+		this.setScreen(new MainMenu(this));
 
 
 	}
@@ -27,7 +27,7 @@ public class TankStarGame extends Game {
 
 	@Override
 	public void render () {
-		System.out.println("tankstar const");
+		//System.out.println("tankstar const");
 //
 		super.render();
 		//System.out.println("1");

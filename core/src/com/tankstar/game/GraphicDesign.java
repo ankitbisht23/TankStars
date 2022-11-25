@@ -1,18 +1,17 @@
 package com.tankstar.game;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
-public class ButtonBackground {
+public class GraphicDesign {
     private float x,y,width,height;
 
-    public ButtonBackground(float x, float y, float width, float height) {
+    public GraphicDesign(float x, float y, float width, float height) {
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
-        System.out.println("construtor");
+      //  System.out.println("construtor");
 
     }
     public void draw(ShapeRenderer shape,int i){

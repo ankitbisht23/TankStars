@@ -44,7 +44,7 @@ public class LoadScreen implements Screen {
             this.dispose();
         }
         game.getBatch().end();
-        System.out.println("loadscreen");
+       // System.out.println("loadscreen");
 
     }
     public boolean isButtonPressed(float x,float y){
