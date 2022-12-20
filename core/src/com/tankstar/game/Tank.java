@@ -30,7 +30,7 @@ public class Tank{
         this.player=player;
         this.isfire=false;
         this.create();
-        this.power=1;
+        this.power=0.5f;
         this.angle=45;
 
 
@@ -138,5 +138,25 @@ public class Tank{
 
     public float getPower() {
         return power;
+    }
+
+    public void setTankhealth(float tankhealth) {
+        this.tankhealth+= tankhealth;
+    }
+
+    public void setAngle(float a) {
+
+        this.angle= a;
+        if(angle>180){
+            angle=180;
+        }
+        if(angle<0){
+            angle=0;
+        }
+
+    }
+
+    public void setPower(float power) {
+        this.power= power;
     }
 }

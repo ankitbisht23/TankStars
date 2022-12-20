@@ -70,8 +70,8 @@ public class PauseScreen implements Screen {
 
         game.getBatch().end();
         shape.begin(ShapeRenderer.ShapeType.Filled);
-        health1.draw(shape,1);
-        health2.draw(shape,3);
+        health1.draw(shape);
+        health2.draw(shape);
         float tx=Gdx.graphics.getWidth()/2-88;
         float ty=Gdx.graphics.getHeight()/2-85;
 

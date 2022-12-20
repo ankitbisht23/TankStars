@@ -14,8 +14,10 @@ public class Bullet {
     private double power;
     private float gravity;
     private float t;
+    private float tX,tY;
+    private int player;
 
-    public Bullet(float x, float y, double angle, float power) {
+    public Bullet(float x, float y, double angle, float power,int p) {
         this.x = x;
         this.y = y;
         this.angle = angle;
@@ -23,9 +25,11 @@ public class Bullet {
         this.velocity=138;
         this.gravity=-10.0f;
         this.t=0;
+        this.player=p;
         this.isDestroyed=false;
         System.out.println("bullet x: "+x);
         System.out.println("y "+y );
+        tX=tY=0;
 
     }
 
@@ -34,11 +38,11 @@ public class Bullet {
     }
 
     public float getX() {
-        return x;
+        return tX;
     }
 
     public float getY() {
-        return y;
+        return tY;
     }
 
     public boolean isDestroyed() {
@@ -81,17 +85,27 @@ public class Bullet {
 //        ShapeRenderer shape=new ShapeRenderer();
 //        shape.begin();
         shape.setColor(Color.VIOLET);
-        shape.circle(x,y,radius);
+        shape.circle(tX,tY,radius);
 
         //shape.dispose();
 
     }
 
     public void update(){
-        t+= Gdx.graphics.getDeltaTime()*10;
-        velocityX=velocity*power*Math.cos(Math.toRadians(angle));
-        velocityY=velocity*power*Math.sin(Math.toRadians(angle));
-        x+=(float)(velocityX*t);
-        y+=(float)(velocityY*t+(0.5*gravity*t*t));
+      if(player==1){
+          t+= Gdx.graphics.getDeltaTime()*10;
+          velocityX=velocity*power*Math.cos(Math.toRadians(angle));
+          velocityY=velocity*power*Math.sin(Math.toRadians(angle));
+          tX=x+(float)(velocityX*t);
+          tY=y+(float)(velocityY*t+(0.5*gravity*t*t));
+      }
+      else{
+          t+= Gdx.graphics.getDeltaTime()*10;
+          velocityX=velocity*power*Math.cos(Math.toRadians(angle));
+          velocityY=velocity*power*Math.sin(Math.toRadians(angle));
+          tX=x-(float)(velocityX*t);
+          tY=y+(float)(velocityY*t+(0.5*gravity*t*t));
+
+      }
     }
 }

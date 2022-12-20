@@ -77,10 +77,11 @@ public class GameScreen implements Screen {
         game.getBatch().draw(t2.getTank(),t2.getX(),t2.getY(),t2.getTankwidth(),t2.getTankheight());
         game.getBatch().draw(health,5,0,980,20);
         game.getBatch().draw(health,1010,0,980,20);
-        game.getBatch().draw(health,Gdx.graphics.getWidth()-105,Gdx.graphics.getHeight()/3-100,100,20);
-        black.draw(game.getBatch(), "Power ",Gdx.graphics.getWidth()-205,Gdx.graphics.getHeight()/3-80);
-        black.draw(game.getBatch(), "Angle  50",Gdx.graphics.getWidth()-205,Gdx.graphics.getHeight()/3-110);
-        black.draw(game.getBatch(), "Player 2 turn ",Gdx.graphics.getWidth()/2-100,Gdx.graphics.getHeight()/4);
+      //  game.getBatch().draw(health,Gdx.graphics.getWidth()-105,Gdx.graphics.getHeight()/3-100,100,20);
+//        black.draw(game.getBatch(), "Power ",Gdx.graphics.getWidth()-205,Gdx.graphics.getHeight()/3-80);
+//        black.draw(game.getBatch(), "Angle  50",Gdx.graphics.getWidth()-205,Gdx.graphics.getHeight()/3-110);
+//        black.draw(game.getBatch(), "Player 2 turn ",Gdx.graphics.getWidth()/2-100,Gdx.graphics.getHeight()/4);
+        container.printFont(game);
         black.draw(game.getBatch(), "Player 2 ",Gdx.graphics.getWidth()-205,Gdx.graphics.getHeight()/3-10);
         black.draw(game.getBatch(), "Player 1 ",60,Gdx.graphics.getHeight()/3-10);
         game.getBatch().end();
@@ -89,9 +90,10 @@ public class GameScreen implements Screen {
             container.updateBullet(shape);
 
         }
-        health1.draw(shape,2);
-        health2.draw(shape,1);
-        power.draw(shape,1);
+        health1.draw(shape);
+        health2.draw(shape);
+       // power.draw(shape);
+        container.printPower(shape);
         if(isButtonPressed(pauseX,pauseY)){
             game.setScreen(new PauseScreen(game));
             this.dispose();

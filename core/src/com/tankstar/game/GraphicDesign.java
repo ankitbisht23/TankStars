@@ -14,14 +14,52 @@ public class GraphicDesign {
       //  System.out.println("construtor");
 
     }
-    public void draw(ShapeRenderer shape,int i){
-        if(i==1)
+    public void draw(ShapeRenderer shape){
+        if(width>=50)
             shape.setColor(Color.GREEN);
-        else if(i==2) shape.setColor(Color.RED);
-        else shape.setColor(Color.ORANGE);
+        else if(width>=30) shape.setColor(Color.ORANGE);
+        else shape.setColor(Color.RED);
         shape.rect(x,y,width,height);
 
     }
 
+    public float getX() {
+        return x;
+    }
 
+    public void setX(float x) {
+        this.x = x;
+    }
+
+    public float getY() {
+        return y;
+    }
+
+    public void setY(float y) {
+        this.y = y;
+    }
+
+    public float getWidth() {
+        return width;
+    }
+
+    public void setWidth(float width) {
+        this.width+= width;
+
+        if(this.width>100){
+            this.width=100;
+
+        }
+        if(this.width<0){
+           this.width=0;
+        }
+    }
+
+    public float getHeight() {
+        return height;
+    }
+
+    public void setHeight(float height) {
+        this.height = height;
+    }
 }
