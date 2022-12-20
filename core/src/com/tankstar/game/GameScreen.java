@@ -1,6 +1,7 @@
 package com.tankstar.game;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
@@ -9,9 +10,11 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 public class GameScreen implements Screen {
     private TankStarGame game;
+    private Container container;
     private ShapeRenderer shape;
     private GraphicDesign health1,health2,power;
     private Texture pauseInactive,pauseActive,sky,ground,tank1,tank2,health;
+    private Tank t1,t2;
     private BitmapFont black;
     private float groundX,groundY,groundWidth,groundHeight,skyX,skyY,tankWidth,tankHeight,
                 skyWidth,skyHeight,pauseX,pauseY,pauseWidth,pauseHeight;
@@ -38,12 +41,16 @@ public class GameScreen implements Screen {
        // pauseActive=new Texture("button/pause2.png");
         sky=new Texture("images/sky.png");
         ground=new Texture("images/ground.png");
-        tank1=new Texture("images/Blazer.png");
-        tank2=new Texture("images/Mark1Rotated.png");
+       // tank1=new Texture("images/Blazer.png");
+       // tank2=new Texture("images/Mark1Rotated.png");
         health=new Texture("images/health.png");
         shape=new ShapeRenderer();
         //white = new BitmapFont(Gdx.files.internal("font/White.fnt"), false);
         black =new BitmapFont(Gdx.files.internal("font/Bold.fnt"),false);
+
+        t1=new Tank(400,groundHeight-2,1,"Mark1",1);
+        t2=new Tank(groundWidth-500,groundHeight-2,1,"Blazer",2);
+        container=new Container(t1,t2);
 
 
     }
@@ -58,8 +65,16 @@ public class GameScreen implements Screen {
         game.getBatch().draw(sky,skyX,skyY,skyWidth,skyHeight);
         game.getBatch().draw(ground,groundX,groundY,groundWidth,groundHeight);
         game.getBatch().draw(pauseInactive,pauseX,pauseY,pauseWidth,pauseHeight);
-        game.getBatch().draw(tank1,400,groundHeight-2,tankWidth,tankHeight);
-        game.getBatch().draw(tank2,groundWidth-500,groundHeight-2,tankWidth,tankHeight);
+        //game.getBatch().draw(tank1,400,groundHeight-2,tankWidth,tankHeight);
+        //game.getBatch().draw(tank2,groundWidth-500,groundHeight-2,tankWidth,tankHeight);
+
+           container.update();
+
+
+
+       // System.out.println(t1.getIsturn());
+        game.getBatch().draw(t1.getTank(),t1.getX(),t1.getY(),t1.getTankwidth(),t1.getTankheight());
+        game.getBatch().draw(t2.getTank(),t2.getX(),t2.getY(),t2.getTankwidth(),t2.getTankheight());
         game.getBatch().draw(health,5,0,980,20);
         game.getBatch().draw(health,1010,0,980,20);
         game.getBatch().draw(health,Gdx.graphics.getWidth()-105,Gdx.graphics.getHeight()/3-100,100,20);
@@ -70,6 +85,10 @@ public class GameScreen implements Screen {
         black.draw(game.getBatch(), "Player 1 ",60,Gdx.graphics.getHeight()/3-10);
         game.getBatch().end();
         shape.begin(ShapeRenderer.ShapeType.Filled);
+        if(container.getIsbullet()){
+            container.updateBullet(shape);
+
+        }
         health1.draw(shape,2);
         health2.draw(shape,1);
         power.draw(shape,1);
@@ -78,7 +97,7 @@ public class GameScreen implements Screen {
             this.dispose();
         }
         shape.end();
-        System.out.println("gamescreen");
+       // System.out.println("gamescreen");
 
 
     }
