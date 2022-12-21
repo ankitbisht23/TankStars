@@ -48,8 +48,8 @@ public class GameScreen implements Screen {
         //white = new BitmapFont(Gdx.files.internal("font/White.fnt"), false);
         black =new BitmapFont(Gdx.files.internal("font/Bold.fnt"),false);
 
-        t1=new Tank(400,groundHeight-2,1,"Mark1",1);
-        t2=new Tank(groundWidth-500,groundHeight-2,1,"Blazer",2);
+        t1=new Tank(400,groundHeight-2,"Mark1",1);
+        t2=new Tank(groundWidth-500,groundHeight-2,"Blazer",2);
         container=new Container(t1,t2);
 
 
@@ -75,8 +75,8 @@ public class GameScreen implements Screen {
        // System.out.println(t1.getIsturn());
         game.getBatch().draw(t1.getTank(),t1.getX(),t1.getY(),t1.getTankwidth(),t1.getTankheight());
         game.getBatch().draw(t2.getTank(),t2.getX(),t2.getY(),t2.getTankwidth(),t2.getTankheight());
-        game.getBatch().draw(health,5,0,980,20);
-        game.getBatch().draw(health,1010,0,980,20);
+//        game.getBatch().draw(health,5,0,980,20);
+//        game.getBatch().draw(health,1010,0,980,20);
       //  game.getBatch().draw(health,Gdx.graphics.getWidth()-105,Gdx.graphics.getHeight()/3-100,100,20);
 //        black.draw(game.getBatch(), "Power ",Gdx.graphics.getWidth()-205,Gdx.graphics.getHeight()/3-80);
 //        black.draw(game.getBatch(), "Angle  50",Gdx.graphics.getWidth()-205,Gdx.graphics.getHeight()/3-110);
@@ -90,8 +90,8 @@ public class GameScreen implements Screen {
             container.updateBullet(shape);
 
         }
-        health1.draw(shape);
-        health2.draw(shape);
+//        health1.draw(shape);
+//        health2.draw(shape);
        // power.draw(shape);
         container.printPower(shape);
         if(isButtonPressed(pauseX,pauseY)){

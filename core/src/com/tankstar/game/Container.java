@@ -16,6 +16,7 @@ public class Container {
     private Bullet bullet;
     private int turn;
     private GraphicDesign power1,power2;
+    private GraphicDesign health1,health2;
 
     public Container(Tank t1, Tank t2) {
         this.t1 = t1;
@@ -26,16 +27,18 @@ public class Container {
         black =new BitmapFont(Gdx.files.internal("font/Bold.fnt"),false);
         health=new Texture("images/health.png");
         power2=new GraphicDesign(Gdx.graphics.getWidth()-105,Gdx.graphics.getHeight()/3-100,100,20);
-        power1=new GraphicDesign(110,Gdx.graphics.getHeight()/3-100,30,20);
+        power1=new GraphicDesign(110,Gdx.graphics.getHeight()/3-100,100,20);
+        health1=new GraphicDesign(5,0,980,20);
+        health2=new GraphicDesign(1010,0,980,20);
     }
     public void changePower(){
         if(turn==0){
             if(Gdx.input.isKeyPressed(Input.Keys.Z)){
-                power1.setWidth(-1);
+                power1.setWidth(power1.getWidth()-1);
 
             }
             if(Gdx.input.isKeyPressed(Input.Keys.A)){
-                power1.setWidth(1);
+                power1.setWidth(power1.getWidth()+1);
 
             }
             float temp= power1.getWidth()/100;
@@ -44,11 +47,11 @@ public class Container {
         }
         else {
             if(Gdx.input.isKeyPressed(Input.Keys.Z)){
-                power2.setWidth(-1);
+                power2.setWidth(power2.getWidth()-1);
 
             }
             if(Gdx.input.isKeyPressed(Input.Keys.A)){
-                power2.setWidth(1);
+                power2.setWidth(power2.getWidth()+1);
 
             }
             float temp= power2.getWidth()/100;
@@ -56,14 +59,16 @@ public class Container {
         }
     }
     public void changeAngle(){
+        float d=Gdx.graphics.getDeltaTime()*13;
         if(turn==0){
-            if(Gdx.input.isKeyJustPressed(Input.Keys.DOWN)){
-               t1.setAngle(t1.getAngle()-1);
+            if(Gdx.input.isKeyPressed(Input.Keys.DOWN)){
+
+               t1.setAngle(t1.getAngle()-d);
                 System.out.println("1");
 
             }
-            if(Gdx.input.isKeyJustPressed(Input.Keys.UP)){
-                t1.setAngle(t1.getAngle()+1);
+            if(Gdx.input.isKeyPressed(Input.Keys.UP)){
+                t1.setAngle(t1.getAngle()+d);
                 System.out.println("2");
 
             }
@@ -71,12 +76,12 @@ public class Container {
 
         }
         else {
-            if(Gdx.input.isKeyJustPressed(Input.Keys.DOWN)){
-                t2.setAngle(t2.getAngle()-1f);
+            if(Gdx.input.isKeyPressed(Input.Keys.DOWN)){
+                t2.setAngle(t2.getAngle()-d);
 
             }
-            if(Gdx.input.isKeyJustPressed(Input.Keys.UP)){
-                t2.setAngle(t2.getAngle()+1);
+            if(Gdx.input.isKeyPressed(Input.Keys.UP)){
+                t2.setAngle(t2.getAngle()+d);
 
             }
             float temp= power2.getWidth()/100;
@@ -125,21 +130,25 @@ public class Container {
         else {
             power2.draw(shape);
         }
+        health1.draw(shape);
+        health2.draw(shape);
 
     }
     public void printFont(TankStarGame game){
         if(turn==0){
             game.getBatch().draw(health,110,Gdx.graphics.getHeight()/3-100,100,20);
             black.draw(game.getBatch(), "Power ",10,Gdx.graphics.getHeight()/3-80);
-            black.draw(game.getBatch(), "Angle  "+t1.getAngle(),10,Gdx.graphics.getHeight()/3-110);
+            black.draw(game.getBatch(), "Angle  "+(int)(t1.getAngle()),10,Gdx.graphics.getHeight()/3-110);
             black.draw(game.getBatch(), "Player 1 turn ",Gdx.graphics.getWidth()/2-100,Gdx.graphics.getHeight()/4);
         }
         else {
             game.getBatch().draw(health,Gdx.graphics.getWidth()-105,Gdx.graphics.getHeight()/3-100,100,20);
             black.draw(game.getBatch(), "Power ",Gdx.graphics.getWidth()-205,Gdx.graphics.getHeight()/3-80);
-            black.draw(game.getBatch(), "Angle  "+t2.getAngle(),Gdx.graphics.getWidth()-205,Gdx.graphics.getHeight()/3-110);
+            black.draw(game.getBatch(), "Angle  "+(int)(t2.getAngle()),Gdx.graphics.getWidth()-205,Gdx.graphics.getHeight()/3-110);
             black.draw(game.getBatch(), "Player 2 turn ",Gdx.graphics.getWidth()/2-100,Gdx.graphics.getHeight()/4);
         }
+        game.getBatch().draw(health,5,0,980,20);
+        game.getBatch().draw(health,1010,0,980,20);
 
     }
     public void updateBullet(ShapeRenderer shapeRenderer){
@@ -152,6 +161,7 @@ public class Container {
     public void destroyBullet(){
         if(turn==0) {
             if (t1.getX() <= bullet.getX() && (t1.getX() + t1.getTankwidth() >= bullet.getX()) && t1.getY() + t1.getTankheight() >= bullet.getY()) {
+                reduceHealth(t1,1);
                 this.bullet = null;
                 this.isbullet = false;
                 System.out.println("by 1");
@@ -159,15 +169,66 @@ public class Container {
         }
         else {
             if (t2.getX() <= bullet.getX() && (t2.getX() + t2.getTankwidth() >= bullet.getX()) && t2.getY() + t2.getTankheight() >= bullet.getY()) {
+                reduceHealth(t2,2);
                 this.bullet = null;
                 this.isbullet = false;
                 System.out.println("by 2");
             }
         }
          if(bullet!=null && bullet.getY()<Gdx.graphics.getHeight()/3){
+             if(turn==0){
+                 reduceHealth(t1,1);
+             }
+             else {
+                 reduceHealth(t2,2);
+             }
             this.bullet=null;
             this.isbullet=false;
              System.out.println("by 3");
+        }
+
+
+    }
+    public void reduceHealth(Tank t,int i){
+        if (t.getX() <= bullet.getX() && (t.getX() + t.getTankwidth() >= bullet.getX()) && t.getY() + t.getTankheight() >= bullet.getY()) {
+            if(t.getX()+t.getTankwidth()/2<bullet.getX()){
+                t.setX(t.getX()-10);
+            }
+            else {
+                t.setX(t.getX()+10);
+            }
+
+            t.setTankhealth(t.getTankhealth()-220);
+            if(i==1){
+                health1.setWidth(health1.getWidth()-220);
+            }
+            else {
+                health2.setWidth(health2.getWidth()-220);
+            }
+
+        }
+        else {
+            int m1, m2, min;
+            m1 = Math.abs((int) (t.getX() - bullet.getX()));
+            m2 = Math.abs((int) (t.getX() + t.getTankwidth() - bullet.getX()));
+            min = Math.min(m1, m2);// bullet ka tank se distance
+            int shift=10-(min/10);
+            float damage=220-(min*4);
+
+            if (min < 40) {
+                if(m1>m2){
+                    t.setX(t.getX()-shift);                }
+                else{
+                    t.setX(t.getX()+shift);
+                }
+                System.out.println("holahola");
+                if (i == 1) {
+                    health1.setWidth(health1.getWidth() - damage);
+                } else {
+                    health2.setWidth(health2.getWidth() - damage);
+                }
+                t.setTankhealth(t.getTankhealth()-damage);
+            }
         }
 
 

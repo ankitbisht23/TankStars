@@ -4,20 +4,21 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 public class GraphicDesign {
-    private float x,y,width,height;
+    private float x,y,width,height,MAX_WIDTH;
 
     public GraphicDesign(float x, float y, float width, float height) {
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
+        this.MAX_WIDTH=width;
       //  System.out.println("construtor");
 
     }
     public void draw(ShapeRenderer shape){
-        if(width>=50)
+        if(width>=(MAX_WIDTH/2))
             shape.setColor(Color.GREEN);
-        else if(width>=30) shape.setColor(Color.ORANGE);
+        else if(width>=((3*MAX_WIDTH)/10)) shape.setColor(Color.ORANGE);
         else shape.setColor(Color.RED);
         shape.rect(x,y,width,height);
 
@@ -44,10 +45,10 @@ public class GraphicDesign {
     }
 
     public void setWidth(float width) {
-        this.width+= width;
+        this.width= width;
 
-        if(this.width>100){
-            this.width=100;
+        if(this.width>MAX_WIDTH){
+            this.width=MAX_WIDTH;
 
         }
         if(this.width<0){

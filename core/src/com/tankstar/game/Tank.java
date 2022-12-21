@@ -20,12 +20,12 @@ public class Tank{
     private int player;
     private Texture tank;
 
-    public Tank(float x, float y, float tankhealth,String type,int player) {
+    public Tank(float x, float y,String type,int player) {
         this.x = x;
         this.y = y;
         this.tankwidth = 150;
         this.tankheight = 75;
-        this.tankhealth = tankhealth;
+        this.tankhealth = 980;
         this.type=type;
         this.player=player;
         this.isfire=false;
@@ -141,7 +141,7 @@ public class Tank{
     }
 
     public void setTankhealth(float tankhealth) {
-        this.tankhealth+= tankhealth;
+        this.tankhealth= tankhealth;
     }
 
     public void setAngle(float a) {
