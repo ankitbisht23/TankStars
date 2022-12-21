@@ -70,25 +70,22 @@ public class PauseScreen implements Screen {
         game.getBatch().draw(t2.getTank(),t2.getX(),t2.getY(),t2.getTankwidth(),t2.getTankheight());
         container.printFont(game);
 
-      //  game.getBatch().draw(tank1,300,groundHeight-2,tankWidth,tankHeight);
-        //game.getBatch().draw(tank2,groundWidth-900,groundHeight-2,tankWidth,tankHeight);
-        //game.getBatch().draw(health,5,0,980,20);
-      //  game.getBatch().draw(health,1010,0,980,20);
+
         save.draw(game);
         exit.draw(game);
         resume.draw(game);
         restart.draw(game);
         game.getBatch().end();
         shape.begin(ShapeRenderer.ShapeType.Filled);
-       container.printPower(shape);
+        container.printPower(shape);
 
 
         if(exit.isButtonPressed()){
-          //  System.out.println("exit");
+
             game.setScreen(new MainMenu(game));
         }
         if(restart.isButtonPressed()){
-         //   System.out.println("exit");
+            //   System.out.println("exit");
             game.setScreen(new GameScreen(game,t1.getType(),t2.getType()));
         }
         if(resume.isButtonPressed()){
@@ -97,17 +94,10 @@ public class PauseScreen implements Screen {
         }
         if(save.isButtonPressed()){
             //System.out.println("exit");
-          game.setScreen(new SaveScreen(game,container));
-
-
+            game.setScreen(new SaveScreen(game,container));
         }
 
-
-
         shape.end();
-       // System.out.println("pausescreen");
-
-
     }
 
 
@@ -138,7 +128,7 @@ public class PauseScreen implements Screen {
         sky.dispose();
         ground.dispose();
         health.dispose();
-      //  shape.dispose();
+
         tank1.dispose();
         tank2.dispose();
 

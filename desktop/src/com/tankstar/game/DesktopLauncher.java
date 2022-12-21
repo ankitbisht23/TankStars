@@ -11,6 +11,6 @@ public class DesktopLauncher {
 		config.setForegroundFPS(60);
 		config.setTitle("Tank star");
 		config.setWindowedMode(2000,1000);
-		new Lwjgl3Application(new TankStarGame(), config);
+		new Lwjgl3Application(TankStarGame.getInstance(), config);
 	}
 }

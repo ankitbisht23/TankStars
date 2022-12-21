@@ -61,18 +61,18 @@ public class Tank{
     public void update(){
 
 
-            if(Gdx.input.isKeyPressed(Input.Keys.LEFT)){
-                x=x-5;
-            }
-            if((Gdx.input.isKeyPressed(Input.Keys.RIGHT))){
-                x=x+5;
-            }
-            if(x<0){
-                x=0;
-            }
-            if(x>Gdx.graphics.getWidth()-tankwidth){
-                x=Gdx.graphics.getWidth()-tankwidth;
-            }
+        if(Gdx.input.isKeyPressed(Input.Keys.LEFT)){
+            x=x-5;
+        }
+        if((Gdx.input.isKeyPressed(Input.Keys.RIGHT))){
+            x=x+5;
+        }
+        if(x<0){
+            x=0;
+        }
+        if(x>Gdx.graphics.getWidth()-tankwidth){
+            x=Gdx.graphics.getWidth()-tankwidth;
+        }
 
 
 

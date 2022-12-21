@@ -4,9 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.GlyphLayout;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+
 
 import java.io.IOException;
 
@@ -46,19 +44,19 @@ public class LoadScreen implements Screen {
         game.getBatch().draw(logo,Gdx.graphics.getWidth()/2-200,Gdx.graphics.getHeight()-200,400,200);
         float tx=Gdx.graphics.getWidth()/2;
         float ty=Gdx.graphics.getHeight()/2;
-       if(b1.isButtonPressed()){
-           try {
-               container=SaveGame.deserialize(1);
-           } catch (IOException e) {
-               throw new RuntimeException(e);
-           } catch (ClassNotFoundException e) {
-               throw new RuntimeException(e);
-           }
-           game.setScreen(new ResumeScreen(game,container));
-       }
+        if(b1.isButtonPressed()){
+            try {
+                container=SaveGame.deserialize(1);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            } catch (ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+            game.setScreen(new ResumeScreen(game,container));
+        }
         if(b2.isButtonPressed()){
             try {
-               container= SaveGame.deserialize(3);
+                container= SaveGame.deserialize(3);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             } catch (ClassNotFoundException e) {
@@ -68,7 +66,7 @@ public class LoadScreen implements Screen {
         }
         if(b3.isButtonPressed()){
             try {
-             container= SaveGame.deserialize(3);
+                container= SaveGame.deserialize(3);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             } catch (ClassNotFoundException e) {
@@ -79,7 +77,7 @@ public class LoadScreen implements Screen {
 
 
         game.getBatch().end();
-       // System.out.println("loadscreen");
+
 
     }
 

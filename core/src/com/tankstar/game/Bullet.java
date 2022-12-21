@@ -27,8 +27,7 @@ public class Bullet {
         this.t=0;
         this.player=p;
         this.isDestroyed=false;
-        System.out.println("bullet x: "+x);
-        System.out.println("y "+y );
+
         tX=tY=0;
 
     }

@@ -12,7 +12,7 @@ public class GraphicDesign {
         this.width = width;
         this.height = height;
         this.MAX_WIDTH=width;
-      //  System.out.println("construtor");
+
 
     }
     public void draw(ShapeRenderer shape){

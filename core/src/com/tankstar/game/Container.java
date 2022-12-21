@@ -63,13 +63,13 @@ public class Container {
         if(turn==0){
             if(Gdx.input.isKeyPressed(Input.Keys.DOWN)){
 
-               t1.setAngle(t1.getAngle()-d);
-                System.out.println("1");
+                t1.setAngle(t1.getAngle()-d);
+
 
             }
             if(Gdx.input.isKeyPressed(Input.Keys.UP)){
                 t1.setAngle(t1.getAngle()+d);
-                System.out.println("2");
+
 
             }
 
@@ -94,12 +94,12 @@ public class Container {
         changeAngle();
         if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE) && bullet==null) {
 
-           // tankcollision();
+            // tankcollision();
             if(turn==0) {
                 bullet = new Bullet(t1.getX()+2*t1.getTankwidth()/3, t1.getY()+t1.getTankheight()-4, t1.getAngle(), t1.getPower(),1);
                 System.out.println("t1 x: "+t1.getX());
                 isbullet = true;
-                System.out.println("bullet");
+
             }
             else {
                 bullet = new Bullet(t2.getX()+t2.getTankwidth()/3, t2.getY()+t2.getTankheight()-4, t2.getAngle(), t2.getPower(),2);
@@ -110,7 +110,7 @@ public class Container {
 
         }
         if(bullet!=null){
-          bullet.update();
+            bullet.update();
         }
         else {
             if (turn == 0)
@@ -157,7 +157,7 @@ public class Container {
 //        bullet=new Bullet(t1.getX(),t1.getY(),t1.getAngle(),t1.getPower());
 
         this.bullet.create(shapeRenderer);
-       destroyBullet();
+        destroyBullet();
 //        this.bullet.update();
     }
     public void destroyBullet(){
@@ -166,7 +166,7 @@ public class Container {
                 reduceHealth(t1,1);
                 this.bullet = null;
                 this.isbullet = false;
-                System.out.println("by 1");
+
             }
         }
         else {
@@ -174,19 +174,19 @@ public class Container {
                 reduceHealth(t2,2);
                 this.bullet = null;
                 this.isbullet = false;
-                System.out.println("by 2");
+
             }
         }
-         if(bullet!=null && bullet.getY()<Gdx.graphics.getHeight()/3){
-             if(turn==0){
-                 reduceHealth(t1,1);
-             }
-             else {
-                 reduceHealth(t2,2);
-             }
+        if(bullet!=null && bullet.getY()<Gdx.graphics.getHeight()/3){
+            if(turn==0){
+                reduceHealth(t1,1);
+            }
+            else {
+                reduceHealth(t2,2);
+            }
             this.bullet=null;
             this.isbullet=false;
-             System.out.println("by 3");
+
         }
 
 
@@ -223,7 +223,7 @@ public class Container {
                 else{
                     t.setX(t.getX()+shift);
                 }
-                System.out.println("holahola");
+
                 if (i == 1) {
                     health1.setWidth(health1.getWidth() - damage);
                 } else {
@@ -249,81 +249,14 @@ public class Container {
         return turn;
     }
 
-    public void setT1(Tank t1) {
-        this.t1 = t1;
-    }
 
-    public void setT2(Tank t2) {
-        this.t2 = t2;
-    }
 
-    public Texture getHealth() {
-        return health;
-    }
 
-    public void setHealth(Texture health) {
-        this.health = health;
-    }
-
-    public BitmapFont getBlack() {
-        return black;
-    }
-
-    public void setBlack(BitmapFont black) {
-        this.black = black;
-    }
-
-    public boolean isIsbullet() {
-        return isbullet;
-    }
-
-    public void setIsbullet(boolean isbullet) {
-        this.isbullet = isbullet;
-    }
-
-    public Bullet getBullet() {
-        return bullet;
-    }
-
-    public void setBullet(Bullet bullet) {
-        this.bullet = bullet;
-    }
 
     public void setTurn(int turn) {
         this.turn = turn;
     }
 
-    public GraphicDesign getPower1() {
-        return power1;
-    }
-
-    public void setPower1(GraphicDesign power1) {
-        this.power1 = power1;
-    }
-
-    public GraphicDesign getPower2() {
-        return power2;
-    }
-
-    public void setPower2(GraphicDesign power2) {
-        this.power2 = power2;
-    }
-
-    public GraphicDesign getHealth1() {
-        return health1;
-    }
-
-    public void setHealth1(GraphicDesign health1) {
-        this.health1 = health1;
-    }
-
-    public GraphicDesign getHealth2() {
-        return health2;
-    }
-
-    public void setHealth2(GraphicDesign health2) {
-        this.health2 = health2;
-    }
 
     public boolean getIsbullet() {
         return isbullet;

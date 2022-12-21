@@ -10,11 +10,11 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 public class TankScreen implements Screen {
 
     private TankStarGame game;
-    private ShapeRenderer shape;
+
     private String s1,s2;
     private int choose;
 
-    private Texture resume,save,restart,exit,sky,ground,tank1,tank2,tank3,health;
+    private Texture sky,ground,tank1,tank2,tank3;
     private BitmapFont white;
 
 
@@ -85,7 +85,7 @@ public class TankScreen implements Screen {
 
         }
         if(choose==2){
-            System.out.println(s1+" "+s2);
+
             game.setScreen(new GameScreen(game,s1,s2));
             this.dispose();
         }

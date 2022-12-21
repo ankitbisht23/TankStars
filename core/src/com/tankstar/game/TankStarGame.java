@@ -5,19 +5,28 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import jdk.tools.jmod.Main;
 
-
+// Singleton Class
 public class TankStarGame extends Game {
 	private SpriteBatch batch;
+	private static TankStarGame game=null;
+	private TankStarGame(){
 
-	//Texture img;
+	}
+	public static TankStarGame getInstance(){
+		if(game==null){
+			game=new TankStarGame();
+		}
+		return game;
+	}
+
+
+
 	
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
-	//	img = new Texture("badlogic.jpg");
-		this.setScreen(new MainMenu(this));
 
-
+		this.setScreen(new MainMenu(TankStarGame.getInstance()));
 	}
 	public SpriteBatch getBatch(){
 		return this.batch;
@@ -27,15 +36,14 @@ public class TankStarGame extends Game {
 
 	@Override
 	public void render () {
-		//System.out.println("tankstar const");
+
 //
 		super.render();
-		//System.out.println("1");
+
 	}
 	
 	@Override
 	public void dispose () {
 		batch.dispose();
-//		img.dispose();
 	}
 }

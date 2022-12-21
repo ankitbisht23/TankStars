@@ -8,7 +8,7 @@ import java.io.*;
 public class SaveGame {
 
 
-public SaveGame(){}
+    public SaveGame(){}
     public static void serialize(Container container,int i) throws IOException {
         TankState s1;
         Tank t1=container.getT1();
