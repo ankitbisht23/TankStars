@@ -13,7 +13,8 @@ public class MainMenu implements Screen {
 
     private TankStarGame game;
 
-    private Texture playInactive,loadInactive,exitInactive,playActive,loadActive,exitActive,sky,ground,tank,logo;
+    private Buttons play,load,exit;
+    private Texture sky,ground,tank,logo;
     private final float px,py,lx,ly,ex,ey,h,w,gap;
    // private BitmapFont black,white;
 
@@ -30,12 +31,15 @@ public class MainMenu implements Screen {
     @Override
     public void show() {
 
-        playInactive=new Texture("button/play1.png");
-        loadInactive=new Texture("button/load1.png");
-        exitInactive=new Texture("button/exit1.png");
-        playActive=new Texture("button/play2.png");
-        loadActive=new Texture("button/load2.png");
-        exitActive=new Texture("button/exit2.png");
+        play=new Buttons(new Texture("button/play1.png"),new Texture("button/play2.png"),px,py,h,w);
+        load=new Buttons(new Texture("button/load1.png"),new Texture("button/load2.png"),lx,ly,h,w);
+        exit=new Buttons(new Texture("button/exit1.png"),new Texture("button/exit2.png"),ex,ey,h,w);
+
+//        loadInactive=new Texture("button/load1.png");
+//        exitInactive=new Texture("button/exit1.png");
+//        playActive=new Texture("button/play2.png");
+//        loadActive=new Texture("button/load2.png");
+//        exitActive=new Texture("button/exit2.png");
         sky=new Texture("images/sky.png");
         ground=new Texture("images/ground.png");
         tank=new Texture("images/Blazer.png");
@@ -59,31 +63,23 @@ public class MainMenu implements Screen {
         game.getBatch().draw(sky,0,Gdx.graphics.getHeight()/2,Gdx.graphics.getWidth(),Gdx.graphics.getHeight()/2);
         game.getBatch().draw(ground,0,0,Gdx.graphics.getWidth(),Gdx.graphics.getHeight()/2);
         game.getBatch().draw(tank,1000,Gdx.graphics.getHeight()/2,200,100);
-        game.getBatch().draw(playInactive,px,py,w,h);
-        game.getBatch().draw(loadInactive,lx,ly,w,h);
-        game.getBatch().draw(exitInactive,ex,ey,w,h);
+       play.draw(game);
+       exit.draw(game);
+       load.draw(game);
         game.getBatch().draw(logo,Gdx.graphics.getWidth()/2-200,Gdx.graphics.getHeight()-200,400,200);
-        if(isButtonHovered(px,py)){
-            game.getBatch().draw(playActive,px,py,w,h);
-        }
-        if(isButtonHovered(lx,ly)){
-            game.getBatch().draw(loadActive,lx,ly,w,h);
-        }
-        if(isButtonHovered(ex,ey)){
-            game.getBatch().draw(exitActive,ex,ey,w,h);
-        }
-        if(isButtonPressed(ex,ey)){
+
+        if(exit.isButtonPressed()){
             this.dispose();
             game.dispose();
 
         }
-        if(isButtonPressed(px,py)){
+        if(play.isButtonPressed()){
 
             game.setScreen(new TankScreen(game));
             this.dispose();
 
         }
-        if(isButtonPressed(lx,ly)){
+        if(load.isButtonPressed()){
             System.out.println("load");
             this.dispose();
             game.setScreen(new LoadScreen(game));
@@ -93,23 +89,23 @@ public class MainMenu implements Screen {
        // System.out.println("mainmenu");
     }
 
-    public boolean isButtonHovered(float x,float y){
-        float mouseX=Gdx.input.getX();
-        float mouseY=Gdx.graphics.getHeight()-Gdx.input.getY();
-        if(mouseX>=x && mouseX<=x+w && mouseY>=y && mouseY<=y+h){
-            return true;
-        }
-        return false;
-    }
-    public boolean isButtonPressed(float x,float y){
-        float mouseX=Gdx.input.getX();
-        float mouseY=Gdx.graphics.getHeight()-Gdx.input.getY();
-        if(mouseX>=x && mouseX<=x+w && mouseY>=y && mouseY<=y+h){
-            if(Gdx.input.justTouched())
-                return true;
-        }
-        return false;
-    }
+//    public boolean isButtonHovered(float x,float y){
+//        float mouseX=Gdx.input.getX();
+//        float mouseY=Gdx.graphics.getHeight()-Gdx.input.getY();
+//        if(mouseX>=x && mouseX<=x+w && mouseY>=y && mouseY<=y+h){
+//            return true;
+//        }
+//        return false;
+//    }
+//    public boolean isButtonPressed(float x,float y){
+//        float mouseX=Gdx.input.getX();
+//        float mouseY=Gdx.graphics.getHeight()-Gdx.input.getY();
+//        if(mouseX>=x && mouseX<=x+w && mouseY>=y && mouseY<=y+h){
+//            if(Gdx.input.justTouched())
+//                return true;
+//        }
+//        return false;
+//    }
     @Override
     public void resize(int width, int height) {
 
@@ -134,12 +130,6 @@ public class MainMenu implements Screen {
 
     @Override
     public void dispose() {
-        playInactive.dispose();
-        playActive.dispose();
-        loadInactive.dispose();
-        loadActive.dispose();
-        exitInactive.dispose();
-        exitActive.dispose();
 
 
 

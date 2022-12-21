@@ -10,7 +10,8 @@ public class PauseScreen implements Screen {
     private TankStarGame game;
     private ShapeRenderer shape;
     private GraphicDesign health1,health2;
-    private Texture resume,save,restart,exit,resume2,save2,restart2,exit2,sky,ground,tank1,tank2,health;
+    private Texture sky,ground,tank1,tank2,health;
+    private Buttons resume,save,restart,exit;
 
     private float groundX,groundY,groundWidth,groundHeight,skyX,skyY,tankWidth,tankHeight,
             skyWidth,skyHeight,pauseX,pauseY,pauseWidth,pauseHeight;
@@ -36,15 +37,14 @@ public class PauseScreen implements Screen {
 
     @Override
     public void show() {
-        restart=new Texture("button/restart1.png");
-        resume=new Texture("button/resume1.png");
-        save=new Texture("button/save1.png");
-        restart2=new Texture("button/restart2.png");
-        resume2=new Texture("button/resume2.png");
-        save2=new Texture("button/save2.png");
+        restart=new Buttons(new Texture("button/restart1.png"),new Texture("button/restart2.png"),Gdx.graphics.getWidth()/2+3,Gdx.graphics.getHeight()/2-85,85,85 );
+        resume=new Buttons(new Texture("button/resume1.png"),new Texture("button/resume2.png"),Gdx.graphics.getWidth()/2-88,Gdx.graphics.getHeight()/2-85,85,85 );
+        save=new Buttons(new Texture("button/save1.png"),new Texture("button/save2.png"),Gdx.graphics.getWidth()/2-100,Gdx.graphics.getHeight()/2-185,100,200 );
+        exit=new Buttons(new Texture("button/exit1.png"),new Texture("button/exit2.png"),Gdx.graphics.getWidth()/2-100,Gdx.graphics.getHeight()/2-285,100,200 );
+
+
         sky=new Texture("images/sky.png");
-        exit=new Texture("button/exit1.png");
-        exit2=new Texture("button/exit2.png");
+
         ground=new Texture("images/ground.png");
         tank1=new Texture("images/Buratino.png");
         tank2=new Texture("images/Mark1Rotated.png");
@@ -72,18 +72,28 @@ public class PauseScreen implements Screen {
         //game.getBatch().draw(tank2,groundWidth-900,groundHeight-2,tankWidth,tankHeight);
         //game.getBatch().draw(health,5,0,980,20);
       //  game.getBatch().draw(health,1010,0,980,20);
-        game.getBatch().draw(resume,Gdx.graphics.getWidth()/2-88,Gdx.graphics.getHeight()/2-85,85,85 );
-        game.getBatch().draw(restart,Gdx.graphics.getWidth()/2+3,Gdx.graphics.getHeight()/2-85,85,85 );
-        game.getBatch().draw(save,Gdx.graphics.getWidth()/2-100,Gdx.graphics.getHeight()/2-185,200,100 );
-        game.getBatch().draw(exit,Gdx.graphics.getWidth()/2-100,Gdx.graphics.getHeight()/2-285,200,100 );
-
+        save.draw(game);
+        exit.draw(game);
+        resume.draw(game);
+        restart.draw(game);
         game.getBatch().end();
         shape.begin(ShapeRenderer.ShapeType.Filled);
        container.printPower(shape);
 
-        float tx=Gdx.graphics.getWidth()/2-88;
-        float ty=Gdx.graphics.getHeight()/2-85;
-        if(isButtonPressed(Gdx.graphics.getWidth()/2-100,Gdx.graphics.getHeight()/2-285)){
+
+        if(exit.isButtonPressed()){
+          //  System.out.println("exit");
+            game.setScreen(new MainMenu(game));
+        }
+        if(restart.isButtonPressed()){
+         //   System.out.println("exit");
+            game.setScreen(new GameScreen(game,t1.getType(),t2.getType()));
+        }
+        if(resume.isButtonPressed()){
+            //System.out.println("exit");
+            game.setScreen(new ResumeScreen(game,container));
+        }
+        if(save.isButtonPressed()){
             System.out.println("exit");
             game.setScreen(new MainMenu(game));
         }
@@ -95,41 +105,8 @@ public class PauseScreen implements Screen {
 
 
     }
-    public boolean isButtonPressed(float x,float y){
-        float mouseX=Gdx.input.getX();
-        float mouseY=Gdx.graphics.getHeight()-Gdx.input.getY();
-        if(mouseX>=x && mouseX<=x+200 && mouseY>=y && mouseY<=y+100){
-            if(Gdx.input.justTouched())
-                return true;
-        }
-        return false;
-    }
 
-    public boolean isButtonPressed2(float x,float y){
-        float mouseX=Gdx.input.getX();
-        float mouseY=Gdx.graphics.getHeight()-Gdx.input.getY();
-        if(mouseX>=x && mouseX<=x+85 && mouseY>=y && mouseY<=y+85){
-            if(Gdx.input.isTouched())
-                return true;
-        }
-        return false;
-    }
-    public boolean isButtonHovered(float x,float y){
-        float mouseX=Gdx.input.getX();
-        float mouseY=Gdx.graphics.getHeight()-Gdx.input.getY();
-        if(mouseX>=x && mouseX<=x+200 && mouseY>=y && mouseY<=y+100){
-            return true;
-        }
-        return false;
-    }
-    public boolean isButtonHovered2(float x,float y){
-        float mouseX=Gdx.input.getX();
-        float mouseY=Gdx.graphics.getHeight()-Gdx.input.getY();
-        if(mouseX>=x && mouseX<=x+85 && mouseY>=y && mouseY<=y+85){
-            return true;
-        }
-        return false;
-    }
+
 
     @Override
     public void resize(int width, int height) {
@@ -153,10 +130,7 @@ public class PauseScreen implements Screen {
 
     @Override
     public void dispose() {
-        restart.dispose();
-        resume.dispose();
-        save.dispose();
-        exit.dispose();
+
         sky.dispose();
         ground.dispose();
         health.dispose();
