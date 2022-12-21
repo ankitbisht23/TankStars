@@ -13,8 +13,10 @@ public class LoadScreen implements Screen {
     private Texture b1,b2,b3,sky,logo;
 
 
+
     public LoadScreen(TankStarGame game) {
         this.game = game;
+
     }
 
     @Override
@@ -40,9 +42,10 @@ public class LoadScreen implements Screen {
         float tx=Gdx.graphics.getWidth()/2;
         float ty=Gdx.graphics.getHeight()/2;
         if(isButtonPressed(tx-100,ty+70)||isButtonPressed(tx-100,ty-50)||isButtonPressed(tx-100,ty-170)){
-            game.setScreen(new GameScreen(game));
+            game.setScreen(new GameScreen(game,"Mark1","Mark1"));
             this.dispose();
         }
+
         game.getBatch().end();
        // System.out.println("loadscreen");
 

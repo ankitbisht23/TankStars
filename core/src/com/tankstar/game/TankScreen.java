@@ -11,6 +11,8 @@ public class TankScreen implements Screen {
 
     private TankStarGame game;
     private ShapeRenderer shape;
+    private String s1,s2;
+    private int choose;
 
     private Texture resume,save,restart,exit,sky,ground,tank1,tank2,tank3,health;
     private BitmapFont white;
@@ -47,9 +49,44 @@ public class TankScreen implements Screen {
         white.draw(game.getBatch(), "Mark1",250,Gdx.graphics.getHeight()/2-40);
         white.draw(game.getBatch(), "Blazer",950,Gdx.graphics.getHeight()/2-40);
         white.draw(game.getBatch(), "Buratino",1650,Gdx.graphics.getHeight()/2-40);
-        white.draw(game.getBatch(), "Choose Your Tank",850,Gdx.graphics.getHeight()/3);
-        if(isButtonPressed(200,Gdx.graphics.getHeight()/2)||isButtonPressed(900,Gdx.graphics.getHeight()/2)||isButtonPressed(1600,Gdx.graphics.getHeight()/2)){
-            game.setScreen(new GameScreen(game));
+
+        if(choose==0)
+            white.draw(game.getBatch(), "Choose Tank for Player 1",850,Gdx.graphics.getHeight()/3);
+       else
+            white.draw(game.getBatch(), "Choose Tank for Player 2",850,Gdx.graphics.getHeight()/3);
+
+        if(isButtonPressed(200,Gdx.graphics.getHeight()/2)){
+            if(choose==0){
+                s1="Mark1";
+            }
+            if(choose==1){
+                s2="Mark1";
+            }
+            choose++;
+        }
+        if(isButtonPressed(900,Gdx.graphics.getHeight()/2)){
+            if(choose==0){
+                s1="Blazer";
+            }
+            if(choose==1){
+                s2="Blazer";
+            }
+            choose++;
+
+        }
+        if(isButtonPressed(1600,Gdx.graphics.getHeight()/2)){
+            if(choose==0){
+                s1="Buratino";
+            }
+            if(choose==1){
+                s2="Buratino";
+            }
+            choose++;
+
+        }
+        if(choose==2){
+            System.out.println(s1+" "+s2);
+            game.setScreen(new GameScreen(game,s1,s2));
             this.dispose();
         }
 
@@ -62,7 +99,7 @@ public class TankScreen implements Screen {
         float mouseX=Gdx.input.getX();
         float mouseY=Gdx.graphics.getHeight()-Gdx.input.getY();
         if(mouseX>=x && mouseX<=x+200 && mouseY>=y && mouseY<=y+100){
-            if(Gdx.input.isTouched())
+            if(Gdx.input.justTouched())
                 return true;
         }
         return false;

@@ -16,9 +16,12 @@ public class GameScreen implements Screen {
     private Texture pauseInactive,pauseActive,sky,ground,tank1,tank2,health;
     private Tank t1,t2;
     private BitmapFont black;
+    private String s1,s2;
     private float groundX,groundY,groundWidth,groundHeight,skyX,skyY,tankWidth,tankHeight,
                 skyWidth,skyHeight,pauseX,pauseY,pauseWidth,pauseHeight;
-    GameScreen(TankStarGame game){
+    GameScreen(TankStarGame game,String s1,String s2){
+        this.s1=s1;
+        this.s2=s2;
         this.game=game;
         groundX=groundY=skyX=0;
         groundWidth=skyWidth=Gdx.graphics.getWidth();
@@ -48,8 +51,8 @@ public class GameScreen implements Screen {
         //white = new BitmapFont(Gdx.files.internal("font/White.fnt"), false);
         black =new BitmapFont(Gdx.files.internal("font/Bold.fnt"),false);
 
-        t1=new Tank(400,groundHeight-2,"Mark1",1);
-        t2=new Tank(groundWidth-500,groundHeight-2,"Blazer",2);
+        t1=new Tank(400,groundHeight-2,s1,1);
+        t2=new Tank(groundWidth-500,groundHeight-2,s2,2);
         container=new Container(t1,t2);
 
 
@@ -95,12 +98,12 @@ public class GameScreen implements Screen {
        // power.draw(shape);
         container.printPower(shape);
         if(isButtonPressed(pauseX,pauseY)){
-            game.setScreen(new PauseScreen(game));
-            this.dispose();
+            game.setScreen(new PauseScreen(game,container));
+           //this.dispose();
         }
         shape.end();
        // System.out.println("gamescreen");
-
+        System.out.println("gamescreen render");
 
     }
     public boolean isButtonPressed(float x,float y){
@@ -135,14 +138,14 @@ public class GameScreen implements Screen {
 
 
     public void dispose() {
-        pauseInactive.dispose();
-        sky.dispose();
+        //pauseInactive.dispose();
+       // sky.dispose();
         ground.dispose();
-        shape.dispose();
-        tank1.dispose();
-        tank2.dispose();
+       // shape.dispose();
+       // tank1.dispose();
+        //tank2.dispose();
         black.dispose();
-        health.dispose();
+       // health.dispose();
 
     }
 }

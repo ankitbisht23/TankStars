@@ -14,8 +14,11 @@ public class PauseScreen implements Screen {
 
     private float groundX,groundY,groundWidth,groundHeight,skyX,skyY,tankWidth,tankHeight,
             skyWidth,skyHeight,pauseX,pauseY,pauseWidth,pauseHeight;
-    PauseScreen(TankStarGame game){
+    private Container container;
+    private Tank t1,t2;
+    PauseScreen(TankStarGame game,Container c){
         this.game=game;
+        this.container=c;
         groundX=groundY=skyX=0;
         groundWidth=skyWidth=Gdx.graphics.getWidth();
         skyY=groundHeight=Gdx.graphics.getHeight()/3;
@@ -27,6 +30,8 @@ public class PauseScreen implements Screen {
         tankHeight=75;
         health1=new GraphicDesign(5,0,700,20);
         health2=new GraphicDesign(1200,0,980,20);
+        this.t1=container.getT1();
+        this.t2=container.getT2();
     }
 
     @Override
@@ -55,14 +60,18 @@ public class PauseScreen implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         game.getBatch().begin();
+        Texture bb=t1.getTank();
 
         game.getBatch().draw(sky,skyX,skyY,skyWidth,skyHeight);
         game.getBatch().draw(ground,groundX,groundY,groundWidth,groundHeight);
+        game.getBatch().draw(t1.getTank(), t1.getX(),t1.getY(),t1.getTankwidth(),t1.getTankheight());
+        game.getBatch().draw(t2.getTank(),t2.getX(),t2.getY(),t2.getTankwidth(),t2.getTankheight());
+        container.printFont(game);
 
-        game.getBatch().draw(tank1,300,groundHeight-2,tankWidth,tankHeight);
-        game.getBatch().draw(tank2,groundWidth-900,groundHeight-2,tankWidth,tankHeight);
-        game.getBatch().draw(health,5,0,980,20);
-        game.getBatch().draw(health,1010,0,980,20);
+      //  game.getBatch().draw(tank1,300,groundHeight-2,tankWidth,tankHeight);
+        //game.getBatch().draw(tank2,groundWidth-900,groundHeight-2,tankWidth,tankHeight);
+        //game.getBatch().draw(health,5,0,980,20);
+      //  game.getBatch().draw(health,1010,0,980,20);
         game.getBatch().draw(resume,Gdx.graphics.getWidth()/2-88,Gdx.graphics.getHeight()/2-85,85,85 );
         game.getBatch().draw(restart,Gdx.graphics.getWidth()/2+3,Gdx.graphics.getHeight()/2-85,85,85 );
         game.getBatch().draw(save,Gdx.graphics.getWidth()/2-100,Gdx.graphics.getHeight()/2-185,200,100 );
@@ -70,11 +79,14 @@ public class PauseScreen implements Screen {
 
         game.getBatch().end();
         shape.begin(ShapeRenderer.ShapeType.Filled);
-        health1.draw(shape);
-        health2.draw(shape);
+       container.printPower(shape);
+
         float tx=Gdx.graphics.getWidth()/2-88;
         float ty=Gdx.graphics.getHeight()/2-85;
-
+        if(isButtonPressed(Gdx.graphics.getWidth()/2-100,Gdx.graphics.getHeight()/2-285)){
+            System.out.println("exit");
+            game.setScreen(new MainMenu(game));
+        }
 
 
 
@@ -87,7 +99,7 @@ public class PauseScreen implements Screen {
         float mouseX=Gdx.input.getX();
         float mouseY=Gdx.graphics.getHeight()-Gdx.input.getY();
         if(mouseX>=x && mouseX<=x+200 && mouseY>=y && mouseY<=y+100){
-            if(Gdx.input.isTouched())
+            if(Gdx.input.justTouched())
                 return true;
         }
         return false;

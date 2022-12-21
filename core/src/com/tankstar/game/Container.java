@@ -243,7 +243,16 @@ public class Container {
 
     }
 
+
     public boolean getIsbullet() {
         return isbullet;
+    }
+
+    public Tank getT1() {
+        return t1;
+    }
+
+    public Tank getT2() {
+        return t2;
     }
 }

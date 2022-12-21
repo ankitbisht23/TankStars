@@ -49,6 +49,7 @@ public class MainMenu implements Screen {
 
     @Override
     public void render(float delta) {
+        System.out.println("main sc render");
 
         Gdx.gl.glClearColor(0.3f,0.2f,0.1f,0.0f);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -83,6 +84,7 @@ public class MainMenu implements Screen {
 
         }
         if(isButtonPressed(lx,ly)){
+            System.out.println("load");
             this.dispose();
             game.setScreen(new LoadScreen(game));
 
@@ -103,7 +105,7 @@ public class MainMenu implements Screen {
         float mouseX=Gdx.input.getX();
         float mouseY=Gdx.graphics.getHeight()-Gdx.input.getY();
         if(mouseX>=x && mouseX<=x+w && mouseY>=y && mouseY<=y+h){
-            if(Gdx.input.isTouched())
+            if(Gdx.input.justTouched())
                 return true;
         }
         return false;
