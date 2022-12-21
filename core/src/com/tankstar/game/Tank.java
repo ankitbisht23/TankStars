@@ -142,6 +142,8 @@ public class Tank{
 
     public void setTankhealth(float tankhealth) {
         this.tankhealth= tankhealth;
+        if(this.tankhealth>980) this.tankhealth=980;
+        if(this.tankhealth<0) this.tankhealth=0;
     }
 
     public void setAngle(float a) {
@@ -158,5 +160,7 @@ public class Tank{
 
     public void setPower(float power) {
         this.power= power;
+        if(this.power>1) this.power=1;
+        if(this.power<0) this.power=0;
     }
 }

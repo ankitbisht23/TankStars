@@ -6,6 +6,8 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
+import java.io.IOException;
+
 public class PauseScreen implements Screen {
     private TankStarGame game;
     private ShapeRenderer shape;
@@ -94,8 +96,10 @@ public class PauseScreen implements Screen {
             game.setScreen(new ResumeScreen(game,container));
         }
         if(save.isButtonPressed()){
-            System.out.println("exit");
-            game.setScreen(new MainMenu(game));
+            //System.out.println("exit");
+          game.setScreen(new SaveScreen(game,container));
+
+
         }
 
 

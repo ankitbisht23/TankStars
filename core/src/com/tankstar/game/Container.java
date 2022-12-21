@@ -130,6 +130,8 @@ public class Container {
         else {
             power2.draw(shape);
         }
+        health1.setWidth(t1.getTankhealth());
+        health2.setWidth(t2.getTankhealth());
         health1.draw(shape);
         health2.draw(shape);
 
@@ -243,6 +245,85 @@ public class Container {
 
     }
 
+    public int getTurn() {
+        return turn;
+    }
+
+    public void setT1(Tank t1) {
+        this.t1 = t1;
+    }
+
+    public void setT2(Tank t2) {
+        this.t2 = t2;
+    }
+
+    public Texture getHealth() {
+        return health;
+    }
+
+    public void setHealth(Texture health) {
+        this.health = health;
+    }
+
+    public BitmapFont getBlack() {
+        return black;
+    }
+
+    public void setBlack(BitmapFont black) {
+        this.black = black;
+    }
+
+    public boolean isIsbullet() {
+        return isbullet;
+    }
+
+    public void setIsbullet(boolean isbullet) {
+        this.isbullet = isbullet;
+    }
+
+    public Bullet getBullet() {
+        return bullet;
+    }
+
+    public void setBullet(Bullet bullet) {
+        this.bullet = bullet;
+    }
+
+    public void setTurn(int turn) {
+        this.turn = turn;
+    }
+
+    public GraphicDesign getPower1() {
+        return power1;
+    }
+
+    public void setPower1(GraphicDesign power1) {
+        this.power1 = power1;
+    }
+
+    public GraphicDesign getPower2() {
+        return power2;
+    }
+
+    public void setPower2(GraphicDesign power2) {
+        this.power2 = power2;
+    }
+
+    public GraphicDesign getHealth1() {
+        return health1;
+    }
+
+    public void setHealth1(GraphicDesign health1) {
+        this.health1 = health1;
+    }
+
+    public GraphicDesign getHealth2() {
+        return health2;
+    }
+
+    public void setHealth2(GraphicDesign health2) {
+        this.health2 = health2;
+    }
 
     public boolean getIsbullet() {
         return isbullet;

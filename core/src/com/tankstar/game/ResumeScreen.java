@@ -101,7 +101,10 @@ public class ResumeScreen implements Screen {
         }
         shape.end();
         // System.out.println("gamescreen");
-        System.out.println("gamescreen render");
+        //System.out.println("gamescreen render");
+        if(t1.getTankhealth()==0 || t2.getTankhealth()==0){
+            game.setScreen(new WinLoseScreen(game,container));
+        }
     }
 
     @Override

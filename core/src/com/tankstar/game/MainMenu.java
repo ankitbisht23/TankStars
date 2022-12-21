@@ -27,6 +27,7 @@ public class MainMenu implements Screen {
         ly=py-h-gap;
         ey=ly-h-gap;
         px=ex=lx=Gdx.graphics.getWidth()/2-w/2;
+
     }
     @Override
     public void show() {
@@ -53,7 +54,7 @@ public class MainMenu implements Screen {
 
     @Override
     public void render(float delta) {
-        System.out.println("main sc render");
+       // System.out.println("main sc render");
 
         Gdx.gl.glClearColor(0.3f,0.2f,0.1f,0.0f);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);

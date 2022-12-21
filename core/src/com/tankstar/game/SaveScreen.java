@@ -10,7 +10,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 import java.io.IOException;
 
-public class LoadScreen implements Screen {
+public class SaveScreen implements Screen {
     private TankStarGame game;
     private Texture sky,logo;
     private Buttons b1,b2,b3;
@@ -18,16 +18,17 @@ public class LoadScreen implements Screen {
 
 
 
-    public LoadScreen(TankStarGame game) {
+    public SaveScreen(TankStarGame game,Container c) {
         this.game = game;
+        container=c;
 
     }
 
     @Override
     public void show() {
-        b1=new Buttons(new Texture("button/loadgame11.png"),new Texture("button/loadgame12.png"),Gdx.graphics.getWidth()/2-100,Gdx.graphics.getHeight()/2+70,100,200);
-        b2=new Buttons(new Texture("button/loadgame21.png"),new Texture("button/loadgame22.png"),Gdx.graphics.getWidth()/2-100,Gdx.graphics.getHeight()/2-50,100,200);
-        b3=new Buttons(new Texture("button/loadgame31.png"),new Texture("button/loadgame32.png"),Gdx.graphics.getWidth()/2-100,Gdx.graphics.getHeight()/2-170,100,200);
+        b1=new Buttons(new Texture("button/savegame11.png"),new Texture("button/savegame12.png"),Gdx.graphics.getWidth()/2-100,Gdx.graphics.getHeight()/2+70,100,200);
+        b2=new Buttons(new Texture("button/savegame21.png"),new Texture("button/savegame22.png"),Gdx.graphics.getWidth()/2-100,Gdx.graphics.getHeight()/2-50,100,200);
+        b3=new Buttons(new Texture("button/savegame31.png"),new Texture("button/savegame32.png"),Gdx.graphics.getWidth()/2-100,Gdx.graphics.getHeight()/2-170,100,200);
 
         sky=new Texture(Gdx.files.internal("images/sky.png"));
         logo=new Texture("button/logo.png");
@@ -46,40 +47,34 @@ public class LoadScreen implements Screen {
         game.getBatch().draw(logo,Gdx.graphics.getWidth()/2-200,Gdx.graphics.getHeight()-200,400,200);
         float tx=Gdx.graphics.getWidth()/2;
         float ty=Gdx.graphics.getHeight()/2;
-       if(b1.isButtonPressed()){
-           try {
-               container=SaveGame.deserialize(1);
-           } catch (IOException e) {
-               throw new RuntimeException(e);
-           } catch (ClassNotFoundException e) {
-               throw new RuntimeException(e);
-           }
-           game.setScreen(new ResumeScreen(game,container));
-       }
-        if(b2.isButtonPressed()){
+        if(b1.isButtonPressed()){
             try {
-               container= SaveGame.deserialize(3);
+                SaveGame.serialize(container,1);
             } catch (IOException e) {
                 throw new RuntimeException(e);
-            } catch (ClassNotFoundException e) {
+            }
+            game.setScreen(new MainMenu(game));
+        }
+        if(b2.isButtonPressed()){
+            try {
+                SaveGame.serialize(container,2);
+            } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-            game.setScreen(new ResumeScreen(game,container));
+            game.setScreen(new MainMenu(game));
         }
         if(b3.isButtonPressed()){
             try {
-             container= SaveGame.deserialize(3);
+                SaveGame.serialize(container,3);
             } catch (IOException e) {
                 throw new RuntimeException(e);
-            } catch (ClassNotFoundException e) {
-                throw new RuntimeException(e);
             }
-            game.setScreen(new ResumeScreen(game,container));
+            game.setScreen(new MainMenu(game));
         }
 
 
         game.getBatch().end();
-       // System.out.println("loadscreen");
+        // System.out.println("loadscreen");
 
     }
 

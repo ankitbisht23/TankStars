@@ -104,7 +104,10 @@ public class GameScreen implements Screen {
         }
         shape.end();
        // System.out.println("gamescreen");
-        System.out.println("gamescreen render");
+        System.out.println(t2.getTankhealth());
+        if(t1.getTankhealth()==0 || t2.getTankhealth()==0){
+            game.setScreen(new WinLoseScreen(game,container));
+        }
 
     }
 //    public boolean isButtonPressed(float x,float y){
