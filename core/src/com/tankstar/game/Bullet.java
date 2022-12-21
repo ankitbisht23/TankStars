@@ -44,41 +44,6 @@ public class Bullet {
         return tY;
     }
 
-    public boolean isDestroyed() {
-        return isDestroyed;
-    }
-
-    public float getRadius() {
-        return radius;
-    }
-
-    public double getVelocityX() {
-        return velocityX;
-    }
-
-    public double getVelocityY() {
-        return velocityY;
-    }
-
-    public double getVelocity() {
-        return velocity;
-    }
-
-    public double getAngle() {
-        return angle;
-    }
-
-    public double getPower() {
-        return power;
-    }
-
-    public float getGravity() {
-        return gravity;
-    }
-
-    public float getT() {
-        return t;
-    }
 
     public void create(ShapeRenderer shape){
 //        ShapeRenderer shape=new ShapeRenderer();
