@@ -67,6 +67,7 @@ public class MainMenu implements Screen {
         if(exit.isButtonPressed()){
             this.dispose();
             game.dispose();
+            return;
 
         }
         if(play.isButtonPressed()){
