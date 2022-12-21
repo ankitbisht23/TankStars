@@ -8,7 +8,7 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
-public class Container {
+public class Container extends Player {
     private Tank t1,t2;
     private Texture health;
     private BitmapFont black;
@@ -88,10 +88,7 @@ public class Container {
             t2.setPower(temp);
         }
     }
-
-    public void update() {
-        changePower();
-        changeAngle();
+    public void changePosition(){
         if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE) && bullet==null) {
 
             // tankcollision();
@@ -119,10 +116,9 @@ public class Container {
                 t2.update();
             tankcollision();
         }
-
-
-
     }
+
+
     public void printPower(ShapeRenderer shape){
         if(turn==0){
             power1.draw(shape);

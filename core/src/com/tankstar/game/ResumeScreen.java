@@ -7,50 +7,22 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
-public class ResumeScreen implements Screen {
-    private TankStarGame game;
+public class ResumeScreen extends GameScreen implements Screen  {
+
     private Container container;
-    private ShapeRenderer shape;
-    private GraphicDesign health1,health2,power;
-    private Texture sky,ground,tank1,tank2,health;
-    private Buttons pause;
+
     private Tank t1,t2;
-    private BitmapFont black;
-    private String s1,s2;
-    private float groundX,groundY,groundWidth,groundHeight,skyX,skyY,tankWidth,tankHeight,
-            skyWidth,skyHeight,pauseX,pauseY,pauseWidth,pauseHeight;
 
     ResumeScreen(TankStarGame game,Container container){
 
-        this.game=game;
-        groundX=groundY=skyX=0;
-        groundWidth=skyWidth= Gdx.graphics.getWidth();
-        skyY=groundHeight=Gdx.graphics.getHeight()/3;
-        skyHeight=Gdx.graphics.getHeight()-groundHeight;
-        pauseX=Gdx.graphics.getWidth()-75;
-        pauseY=Gdx.graphics.getHeight()-75;
-        pauseHeight=pauseWidth=75;
-        tankWidth=150;
-        tankHeight=75;
-        health1=new GraphicDesign(5,0,300,20);
-        health2=new GraphicDesign(1030,0,980,20);
-        power=new GraphicDesign(Gdx.graphics.getWidth()-105,Gdx.graphics.getHeight()/3-100,80,20);
+        super(game,container.getT1().getType(),container.getT2().getType());
+
         this.container=container;
 
     }
     @Override
     public void show(){
-        pause=new Buttons(new Texture("button/pause1.png"),new Texture("button/pause2.png"),pauseX,pauseY,pauseHeight,pauseWidth);
-        // pauseActive=new Texture("button/pause2.png");
-        sky=new Texture("images/sky.png");
-        ground=new Texture("images/ground.png");
-        // tank1=new Texture("images/Blazer.png");
-        // tank2=new Texture("images/Mark1Rotated.png");
-        health=new Texture("images/health.png");
-        shape=new ShapeRenderer();
-        //white = new BitmapFont(Gdx.files.internal("font/White.fnt"), false);
-        black =new BitmapFont(Gdx.files.internal("font/Bold.fnt"),false);
-
+       super.show();
         t1=container.getT1();
         t2=container.getT2();
 

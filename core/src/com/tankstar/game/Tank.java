@@ -6,7 +6,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import jdk.javadoc.internal.doclets.toolkit.PropertyUtils;
 
-public class Tank{
+public class Tank implements Entity{
 
     private boolean isfire;
     private float x;

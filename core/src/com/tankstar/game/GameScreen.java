@@ -9,16 +9,16 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 public class GameScreen implements Screen {
-    private TankStarGame game;
-    private Container container;
-    private ShapeRenderer shape;
-    private GraphicDesign health1,health2,power;
-    private Texture sky,ground,health;
-    private Buttons pause;
+    protected TankStarGame game;
+    protected Container container;
+    protected ShapeRenderer shape;
+    protected GraphicDesign health1,health2,power;
+    protected Texture sky,ground,health;
+    protected Buttons pause;
     private Tank t1,t2;
-    private BitmapFont black;
-    private String s1,s2;
-    private float groundX,groundY,groundWidth,groundHeight,skyX,skyY,tankWidth,tankHeight,
+    protected BitmapFont black;
+    protected String s1,s2;
+    protected float groundX,groundY,groundWidth,groundHeight,skyX,skyY,tankWidth,tankHeight,
             skyWidth,skyHeight,pauseX,pauseY,pauseWidth,pauseHeight;
     GameScreen(TankStarGame game,String s1,String s2){
         this.s1=s1;

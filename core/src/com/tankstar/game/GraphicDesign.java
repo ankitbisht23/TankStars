@@ -3,7 +3,7 @@ package com.tankstar.game;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
-public class GraphicDesign {
+public class GraphicDesign implements Entity {
     private float x,y,width,height,MAX_WIDTH;
 
     public GraphicDesign(float x, float y, float width, float height) {

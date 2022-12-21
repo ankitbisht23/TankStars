@@ -77,7 +77,7 @@ public class MainMenu implements Screen {
 
         }
         if(load.isButtonPressed()){
-            System.out.println("load");
+
             this.dispose();
             game.setScreen(new LoadScreen(game));
 

@@ -56,7 +56,7 @@ public class LoadScreen implements Screen {
         }
         if(b2.isButtonPressed()){
             try {
-                container= SaveGame.deserialize(3);
+                container= SaveGame.deserialize(2);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             } catch (ClassNotFoundException e) {
